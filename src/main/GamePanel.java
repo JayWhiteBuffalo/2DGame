@@ -31,12 +31,13 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH= new KeyHandler();
 
     Thread gameThread;
+    public CollisionCheck cCheck = new CollisionCheck(this);
     public Player player = new Player(this, keyH);
 
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.black);
+        this.setBackground(Color.green);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -102,7 +103,7 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
             if(timer >= 1000000000) {
-                System.out.println("FPS:" + drawCount);
+                System.out.println("player speed:" + player.speed);
                 drawCount = 0;
                 timer = 0;
             }
