@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -44,19 +45,31 @@ public class Player extends Entity{
     }
     public void getPlayerImage() {
 
-        try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-up.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-up1.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-down.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-down-1.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-left.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-left-1.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-01-right.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/Mage-M-right1.png"));
+        up1 = setup("Mage-M-up");
+        up2 = setup("Mage-M-up1");
+        down1 = setup("Mage-M-down");
+        down2 = setup("Mage-M-down-1");
+        left1 = setup("Mage-M-left");
+        left2 = setup("Mage-M-left-1");
+        right1 = setup("Mage-M-01-right");
+        right2 = setup("Mage-M-right1");
 
-        }catch(IOException e) {
+    }
+
+    public BufferedImage setup(String imageName) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName +".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+
+        }catch(IOException e){
             e.printStackTrace();
         }
+
+        return image;
     }
     public void update() {
 
@@ -144,9 +157,6 @@ public class Player extends Entity{
     }
 
     public void draw(Graphics2D g2) {
-//        g2.setColor(Color.white);
-//
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         BufferedImage image = null;
 
@@ -184,6 +194,6 @@ public class Player extends Entity{
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY,null);
     }
 }
