@@ -21,6 +21,7 @@ public class Player extends Entity{
         super(gp);
         this.keyH = keyH;
 
+
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
@@ -159,6 +160,9 @@ public class Player extends Entity{
     }
     public void interactNPC(int i) {
         if(i != 999) {
+
+            gp.gameState = gp.dialogueState;
+            gp.npc[i].speak();
 
         }
     }

@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity{
         speed = 1;
 
         getImage();
+        setDialogue();
     }
         public void getImage() {
             up1 = setup("/npc/oldman_up_1");
@@ -24,6 +25,9 @@ public class NPC_OldMan extends Entity{
             right1 = setup("/npc/oldman_right_1");
             right2 = setup("/npc/oldman_right_2");
 
+        }
+        public void setDialogue() {
+        dialogue[0] = "I need to get home, but there are too many monsters! Clear them out and I'll give you you a reward.";
         }
         public void setAction(){
             actionLockCounter++;
@@ -47,6 +51,10 @@ public class NPC_OldMan extends Entity{
 
                 actionLockCounter = 0;
             }
+        }
+        public void speak() {
+
+            gp.ui.currentDialogue = dialogue[0];
         }
     }
 

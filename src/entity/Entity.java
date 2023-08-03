@@ -22,6 +22,7 @@ public class Entity {
         public int solidAreaDefaultX, solidAreaDefaultY;
         public boolean collisionOn = false;
         public int actionLockCounter = 0;
+        String dialogue[] = new String[20];
 
         public Entity(GamePanel gp) {
             this.gp = gp;
@@ -29,8 +30,10 @@ public class Entity {
         public void setAction() {
 
         }
+        public void speak() {}
         public void update(){
             setAction();
+
 
             collisionOn = false;
             gp.cCheck.checkTile(this);
